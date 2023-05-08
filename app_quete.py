@@ -6,6 +6,7 @@ import tempfile
 
 df=pd.read_csv('https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv')
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Créer des boutons pour filtrer les résultats par région
 region = st.sidebar.radio('Sélectionner une région', ['Toutes régions', ' US.', ' Europe.', ' Japan.'])
@@ -22,7 +23,6 @@ st.write(df.describe())
 st.write('## Corrélation entre les variables', region)
 corr_map = sns.heatmap(df.corr(), cmap='coolwarm', center=0)
 st.pyplot()
-st.set_option('deprecation.showPyplotGlobalUse', False)
 with tempfile.NamedTemporaryFile(delete=False, suffix='.png') as tmp_file:
     corr_map.figure.savefig(tmp_file.name)
 
